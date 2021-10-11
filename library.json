@@ -1,7 +1,7 @@
 {
     "name": "ArduinoEigen",
     "keywords": "eigen,linear algebra",
-    "description": "Eigen for Arduino",
+    "description": "Eigen (a C++ template library for linear algebra) for Arduino",
     "repository":
     {
         "type": "git",
@@ -13,7 +13,7 @@
         "url": "https://github.com/hideakitai",
         "maintainer": true
     },
-    "version": "0.1.0",
+    "version": "0.2.0",
     "license": "MIT",
     "frameworks": "arduino",
     "platforms": "*"
