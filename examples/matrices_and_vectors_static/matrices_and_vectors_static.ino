@@ -1,8 +1,8 @@
-#include <ArduinoEigen.h>
+#include <ArduinoEigenDense.h>
 
 using namespace Eigen;
 
-int main() {
+void setup() {
     Serial.begin(115200);
     delay(2000);
 
@@ -40,3 +40,5 @@ int main() {
     Serial.print(vo(2));
     Serial.println();
 }
+
+void loop() {}

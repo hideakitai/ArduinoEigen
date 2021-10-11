@@ -2,7 +2,7 @@
 
 using Eigen::MatrixXd;
 
-int main() {
+void setup() {
     Serial.begin(115200);
     delay(2000);
 
@@ -22,3 +22,5 @@ int main() {
     Serial.print(m(1, 1));
     Serial.println();
 }
+
+void loop() {}
