@@ -1,23 +1,42 @@
 #ifndef ARDUINOEIGEN_H
 #define ARDUINOEIGEN_H
 
-#ifdef __AVR__
-#error THIS PLATFORM IS NOT SUPPORTED
+#include <Arduino.h>
+#include <ArxTypeTraits.h>
+
+#if ARX_HAVE_LIBSTDCPLUSPLUS == 0
+#error THIS PLATFORM IS NOT SUPPORTED BECAUSE THERE IS NO STANDARD LIBRARY
 #else
+
+//
 #ifdef abs
-#define abs_tmp abs
 #undef abs
+template <typename T>
+static constexpr T abs(const T& x) {
+    return (x > 0) ? x : -x;
+}
 #endif
 #ifdef round
-#define round_tmp round
 #undef round
+template <typename T>
+static constexpr T round(const T& x) {
+    return (x >= 0) ? (long)(x +0.5) : (long)(x - 0.5);
+}
 #endif
 #ifdef B1
-#define B1_tmp B1
 #undef B1
+static constexpr size_t B1 {1};
 #endif
+#ifdef F
+#undef F
+static constexpr const __FlashStringHelper* F(const char* str) {
+    return reinterpret_cast<const __FlashStringHelper*>(PSTR(str));
+}
 #endif
+#endif  // ARX_HAVE_LIBSTDCPLUSPLUS == 0
 
+// guarantee that the Eigen code that you are #including is licensed under the MPL2
+#define EIGEN_MPL2_ONLY
 #include "Eigen/Eigen"
 
 namespace Eigen
@@ -44,15 +63,5 @@ static t_matrix PseudoInverse(const t_matrix& m, const double &tolerance = 1.e-6
     return svd.matrixV() * sigma_inv.asDiagonal() * svd.matrixU().transpose();
 }
 }
-
-#ifdef abs_tmp
-#define abs abs_tmp
-#endif
-#ifdef round_tmp
-#define round round_tmp
-#endif
-#ifdef B1_tmp
-#define B1 B1_tmp
-#endif
 
 #endif //ARDUINOEIGEN_H
