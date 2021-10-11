@@ -43,7 +43,7 @@ namespace Eigen
 {
 // https://robotics.naist.jp/edu/text/?Robotics%2FEigen#b3b26d13
 template <typename t_matrix>
-static t_matrix PseudoInverse(const t_matrix& m, const double &tolerance = 1.e-6)
+inline t_matrix pseudoInverse(const t_matrix& m, const double &tolerance = 1.e-6)
 {
     using namespace Eigen;
     typedef JacobiSVD<t_matrix> TSVD;
