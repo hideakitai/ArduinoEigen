@@ -8,7 +8,7 @@
 #error THIS PLATFORM IS NOT SUPPORTED BECAUSE THERE IS NO STANDARD LIBRARY
 #else
 
-//
+// replace conflicting macros...
 #ifdef abs
 #undef abs
 template <typename T>
@@ -20,7 +20,7 @@ static constexpr T abs(const T& x) {
 #undef round
 template <typename T>
 static constexpr T round(const T& x) {
-    return (x >= 0) ? (long)(x +0.5) : (long)(x - 0.5);
+    return (x >= 0) ? (long)(x + 0.5) : (long)(x - 0.5);
 }
 #endif
 #ifdef B1
@@ -39,29 +39,29 @@ static constexpr const __FlashStringHelper* F(const char* str) {
 #define EIGEN_MPL2_ONLY
 #include "Eigen/Eigen"
 
-namespace Eigen
-{
+namespace Eigen {
+
 // https://robotics.naist.jp/edu/text/?Robotics%2FEigen#b3b26d13
 template <typename t_matrix>
-inline t_matrix pseudoInverse(const t_matrix& m, const double &tolerance = 1.e-6)
-{
+inline t_matrix pseudoInverse(const t_matrix& m, const double& tolerance = 1.e-6) {
     using namespace Eigen;
     typedef JacobiSVD<t_matrix> TSVD;
 
     unsigned int svd_opt(ComputeThinU | ComputeThinV);
-    if(m.RowsAtCompileTime != Dynamic || m.ColsAtCompileTime != Dynamic)
-        svd_opt= ComputeFullU | ComputeFullV;
+    if (m.RowsAtCompileTime != Dynamic || m.ColsAtCompileTime != Dynamic) svd_opt = ComputeFullU | ComputeFullV;
 
     TSVD svd(m, svd_opt);
-    const typename TSVD::SingularValuesType &sigma(svd.singularValues());
+    const typename TSVD::SingularValuesType& sigma(svd.singularValues());
     typename TSVD::SingularValuesType sigma_inv(sigma.size());
-    for(long i = 0; i < sigma.size(); ++i)
-    {
-        if(sigma(i) > tolerance) sigma_inv(i) = 1.0 / sigma(i);
-        else                     sigma_inv(i) = 0.0;
+    for (long i = 0; i < sigma.size(); ++i) {
+        if (sigma(i) > tolerance)
+            sigma_inv(i) = 1.0 / sigma(i);
+        else
+            sigma_inv(i) = 0.0;
     }
     return svd.matrixV() * sigma_inv.asDiagonal() * svd.matrixU().transpose();
 }
-}
 
-#endif //ARDUINOEIGEN_H
+}  // namespace Eigen
+
+#endif  // ARDUINOEIGEN_H
