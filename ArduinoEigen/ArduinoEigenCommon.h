@@ -23,6 +23,10 @@ static constexpr T round(const T& x) {
     return (x >= 0) ? (long)(x + 0.5) : (long)(x - 0.5);
 }
 #endif
+#ifdef B0
+#undef B0
+static constexpr size_t B0 {0};
+#endif
 #ifdef B1
 #undef B1
 static constexpr size_t B1 {1};
