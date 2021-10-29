@@ -499,9 +499,9 @@ EIGEN_CONSTEXPR Index size(const T (&) [N]) { return N; }
 #if EIGEN_HAS_STD_INVOKE_RESULT
 template<typename T> struct result_of;
 
-template<typename F, typename... ArgTypes>
-struct result_of<F(ArgTypes...)> {
-  typedef typename std::invoke_result<F, ArgTypes...>::type type1;
+template<typename Fn, typename... ArgTypes>
+struct result_of<Fn(ArgTypes...)> {
+  typedef typename std::invoke_result<Fn, ArgTypes...>::type type1;
   typedef typename remove_all<type1>::type type;
 };
 #elif EIGEN_HAS_STD_RESULT_OF
@@ -617,33 +617,33 @@ struct invoke_result {
   typedef typename remove_all<type1>::type type;
 };
 #elif EIGEN_HAS_CXX11
-template<typename F, typename... ArgTypes>
+template<typename Fn, typename... ArgTypes>
 struct invoke_result {
-  typedef typename result_of<F(ArgTypes...)>::type type1;
+  typedef typename result_of<Fn(ArgTypes...)>::type type1;
   typedef typename remove_all<type1>::type type;
 };
 #else
-template<typename F, typename ArgType0 = void, typename ArgType1 = void, typename ArgType2 = void>
+template<typename Fn, typename ArgType0 = void, typename ArgType1 = void, typename ArgType2 = void>
 struct invoke_result {
-  typedef typename result_of<F(ArgType0, ArgType1, ArgType2)>::type type1;
+  typedef typename result_of<Fn(ArgType0, ArgType1, ArgType2)>::type type1;
   typedef typename remove_all<type1>::type type;
 };
 
-template<typename F>
-struct invoke_result<F, void, void, void> {
-  typedef typename result_of<F()>::type type1;
+template<typename Fn>
+struct invoke_result<Fn, void, void, void> {
+  typedef typename result_of<Fn()>::type type1;
   typedef typename remove_all<type1>::type type;
 };
 
-template<typename F, typename ArgType0>
-struct invoke_result<F, ArgType0, void, void> {
-  typedef typename result_of<F(ArgType0)>::type type1;
+template<typename Fn, typename ArgType0>
+struct invoke_result<Fn, ArgType0, void, void> {
+  typedef typename result_of<Fn(ArgType0)>::type type1;
   typedef typename remove_all<type1>::type type;
 };
 
-template<typename F, typename ArgType0, typename ArgType1>
-struct invoke_result<F, ArgType0, ArgType1, void> {
-  typedef typename result_of<F(ArgType0, ArgType1)>::type type1;
+template<typename Fn, typename ArgType0, typename ArgType1>
+struct invoke_result<Fn, ArgType0, ArgType1, void> {
+  typedef typename result_of<Fn(ArgType0, ArgType1)>::type type1;
   typedef typename remove_all<type1>::type type;
 };
 #endif

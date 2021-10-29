@@ -31,12 +31,6 @@ static constexpr size_t B0 {0};
 #undef B1
 static constexpr size_t B1 {1};
 #endif
-#ifdef F
-#undef F
-static constexpr const __FlashStringHelper* F(const char* str) {
-    return reinterpret_cast<const __FlashStringHelper*>(PSTR(str));
-}
-#endif
 #endif  // ARX_HAVE_LIBSTDCPLUSPLUS == 0
 
 #endif  // ARDUINO_EIGEN_COMMON_H
