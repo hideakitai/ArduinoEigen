@@ -74,5 +74,5 @@ jobs:
           sketch-paths: |
             - examples
           libraries: |
-            - source-path: ./
+            - name: Eigen
           verbose: true
