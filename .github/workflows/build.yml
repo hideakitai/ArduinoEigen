@@ -74,5 +74,6 @@ jobs:
           sketch-paths: |
             - examples
           libraries: |
-            - name: Eigen
+            - source-path: ./
+            - name: ArxTypeTraits
           verbose: true
