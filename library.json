@@ -16,5 +16,9 @@
     "version": "0.2.3",
     "license": "MIT",
     "frameworks": "arduino",
-    "platforms": "*"
+    "platforms": "*",
+    "dependencies":
+    {
+        "hideakitai/ArxTypeTraits": "*"
+    }
 }

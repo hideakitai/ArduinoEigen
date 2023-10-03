@@ -2,7 +2,7 @@
 #ifndef ARDUINO_EIGEN_COMMON_H
 #define ARDUINO_EIGEN_COMMON_H
 
-#include "ArduinoEigen/utils/ArxTypeTraits/ArxTypeTraits.h"
+#include <ArxTypeTraits.h>
 
 #if ARX_HAVE_LIBSTDCPLUSPLUS == 0
 #error THIS PLATFORM IS NOT SUPPORTED BECAUSE THERE IS NO STANDARD LIBRARY

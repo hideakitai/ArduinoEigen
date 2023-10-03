@@ -90,6 +90,10 @@ This library does NOT support following boards because they don't have standard 
 
 For such boards, consider using [EigenArduino](https://github.com/vancegroup/EigenArduino).
 
+## Dependent Libraries
+
+- [ArxTypeTraits](https://github.com/hideakitai/ArxTypeTraits)
+
 ## License
 
 MPL-2.0
