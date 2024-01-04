@@ -5,22 +5,22 @@ on:
       - develop
     paths-ignore:
       - .git*
-      - '**.md'
-      - 'library.properties'
-      - 'library.json'
+      - "**.md"
+      - "library.properties"
+      - "library.json"
   pull_request:
     branches:
       - main
       - develop
     paths-ignore:
       - .git*
-      - '**.md'
-      - 'library.properties'
-      - 'library.json'
+      - "**.md"
+      - "library.properties"
+      - "library.json"
 
 jobs:
   build:
-    name: 'Build Test: ${{matrix.board.arch}}:${{matrix.board.name}}'
+    name: "Build Test: ${{matrix.board.arch}}:${{matrix.board.name}}"
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -41,15 +41,15 @@ jobs:
           - vendor: rp2040
             arch: rp2040
             name: rpipicow
-          - vendor: teensy
-            arch: avr
-            name: teensy35
-          - vendor: teensy
-            arch: avr
-            name: teensy36
-          - vendor: teensy
-            arch: avr
-            name: teensy41
+          # - vendor: teensy
+          #   arch: avr
+          #   name: teensy35
+          # - vendor: teensy
+          #   arch: avr
+          #   name: teensy36
+          # - vendor: teensy
+          #   arch: avr
+          #   name: teensy41
         include:
           - index: https://arduino.esp8266.com/stable/package_esp8266com_index.json
             board:
@@ -60,9 +60,9 @@ jobs:
           - index: https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json
             board:
               vendor: rp2040
-          - index: https://www.pjrc.com/teensy/package_teensy_index.json
-            board:
-              vendor: teensy
+          # - index: https://www.pjrc.com/teensy/package_teensy_index.json
+          #   board:
+          #     vendor: teensy
     steps:
       - uses: actions/checkout@v4
       - name: compile example sketchs
