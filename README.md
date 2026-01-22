@@ -66,7 +66,7 @@ void setup() {
 
 ## Additional Features
 
-### Pseudo Inverse by SVD decomposition
+### Pseudo Inverse by SVD
 
 ```C++
 MatrixXd Jacobi {3, 4};
